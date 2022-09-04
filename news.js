@@ -69,7 +69,7 @@ const allNewses = newses => {
     });
     const countValue = document.getElementById('count');
     countValue.innerHTML = `
-    <p > ${count} items found for category Entertainment </p>
+    <p><b> ${count} </b> items found for category Entertainment </p>
     `
 
 }
