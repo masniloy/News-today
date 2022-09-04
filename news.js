@@ -18,9 +18,6 @@ const allcatagori = catagories => {
     });
 }
 
-// const trying = (code) => {
-//     console.log('https://openapi.programming-hero.com/api/news/category/' + code);
-// }
 
 
 
