@@ -11,22 +11,28 @@ const allcatagori = catagories => {
         const addContainer = document.createElement('div');
         addContainer.classList.add('catagori')
         addContainer.innerHTML = `
-        <h6> ${catagori.category_name} </h6>
+        <h6 onclick="allNews('${catagori.category_id}')"> ${catagori.category_name} </h6>
         `;
         catagoriContainer.appendChild(addContainer);
     });
 }
 
-const allNews = () => {
-    fetch('https://openapi.programming-hero.com/api/news/category/01')
+// const trying = (code) => {
+//     console.log('https://openapi.programming-hero.com/api/news/category/' + code);
+// }
+
+
+
+const allNews = (code) => {
+    fetch('https://openapi.programming-hero.com/api/news/category/' + code)
         .then(res => res.json())
         .then(data => allNewses(data.data));
 }
 
 const allNewses = newses => {
-    const newsContainer = document.getElementById('newses')
+    const newsContainer = document.getElementById('newses');
+    newsContainer.innerHTML = ``;
     newses.forEach(news => {
-        console.log(news._id);
         const addNews = document.createElement('div');
         addNews.classList.add('news')
         addNews.innerHTML = `
@@ -35,7 +41,7 @@ const allNewses = newses => {
             <img src="${news.image_url}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${news.title}</h5>
-                <p class="card-text">${news.details}</p>
+                <p class="card-text">${news.details.slice(0, 400)}</p>
 
                 <section class="d-flex justify-content-between">
 
