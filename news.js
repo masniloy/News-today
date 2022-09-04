@@ -1,3 +1,5 @@
+
+
 const allCatagories = () => {
     fetch('https://openapi.programming-hero.com/api/news/categories')
         .then(res => res.json())
@@ -6,7 +8,6 @@ const allCatagories = () => {
 
 const allcatagori = catagories => {
     const catagoriContainer = document.getElementById('catagories')
-    catagoriContainer.innerHTML = ``;
     catagories.forEach(catagori => {
         console.log(catagori.category_name);
         const addContainer = document.createElement('div');
@@ -15,6 +16,7 @@ const allcatagori = catagories => {
         <h6 onclick="allNews('${catagori.category_id}')"> ${catagori.category_name} </h6>
         `;
         catagoriContainer.appendChild(addContainer);
+
     });
 }
 
@@ -30,16 +32,14 @@ const allNews = (code) => {
 const allNewses = newses => {
     const newsContainer = document.getElementById('newses');
     newsContainer.innerHTML = ``;
+    var count = 0;
     newses.forEach(news => {
+        count++;
         const addNews = document.createElement('div');
         addNews.classList.add('news')
         addNews.innerHTML = `
-       
 
-
-
-
-        <div onclick="forModat('${news._id}')" class="card mb-3" style="max-width: 100%;">
+        <div onclick="forModat('${news._id}')" class="card mb-3 mt-3" style="max-width: 100%;">
   <div class="row g-0">
     <div class="col-md-4">
       <img src="${news.image_url}" class="img-fluid rounded-start" alt="...">
@@ -67,6 +67,11 @@ const allNewses = newses => {
         `;
         newsContainer.appendChild(addNews);
     });
+    const countValue = document.getElementById('count');
+    countValue.innerHTML = `
+    <p > ${count} items found for category Entertainment </p>
+    `
+
 }
 
 const forModat = (mCode) => {
@@ -87,7 +92,7 @@ const modal = mod => {
     // const addModal = document.createElement('div')
     // addModal.classList.add('modal')
     checkModal.innerHTML = `
-    <div  class=" m-5">
+    <div  class=" mt-5 mb-5" style="max-width: 100%;">
         <div class="card mb-3">
         <img src="${mod.image_url}" class="card-img-top" alt="...">
         <div class="card-body">
